@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Button Style Google</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="content">
+		<h1>
+			Fancy Buttons and SVGs!
+		</h1>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit.
+			Fuga officia repudiandae veniam amet cupiditate iusto ducimus sapiente
+			quasi dolor deserunt.
+		</p>
+		<div class="btn">
+			<div class="text">Lorem.</div>
+			<svg>
+				<rect ry="25" stroke="var(--outline)" stroke-width="4" fill="none"></rect>
+				<rect ry="25" stroke="currentColor" stroke-width="4" fill="none"></rect>
+			</svg>
+		</div>
+		<div class="btn">
+			<div class="text">Ex.</div>
+			<svg>
+				<rect ry="25" stroke="var(--outline)" stroke-width="4" fill="none"></rect>
+				<rect ry="25" stroke="currentColor" stroke-width="4" fill="none"></rect>
+			</svg>
+		</div>
+		<div class="btn">
+			<div class="text">Fuga.</div>
+			<svg>
+				<rect ry="25" stroke="var(--outline)" stroke-width="4" fill="none"></rect>
+				<rect ry="25" stroke="currentColor" stroke-width="4" fill="none"></rect>
+			</svg>
+		</div>
+		<div class="btn">
+			<div class="text">Quo?</div>
+			<svg>
+				<rect ry="25" stroke="var(--outline)" stroke-width="4" fill="none"></rect>
+				<rect ry="25" stroke="currentColor" stroke-width="4" fill="none"></rect>
+			</svg>
+		</div>
+	</div>
+
+	<footer>
+		Inspired from Google at <a
+			href="https://ads.google.com/home/#:~:text=Google%20Ads%20gives%20you%20many%20ways%20to%20be"
+			target="_blank">this page</a>
+	</footer>
+	<script>
+		let btns = document.querySelectorAll('.btn');
+		function playNext(i=0) {
+			i = (i + 1) % btns.length;
+			btns[i].classList.add('play');
+		} 
+
+		btns.forEach((b, i) => {
+			// b.style.setProperty('--desiredW', b.clientWidth + 'px');
+			b.style.setProperty('--desiredW', b.querySelector('.text').textContent.length + 5 + 'ch');
+
+			b.addEventListener("animationend", () => {
+				setTimeout(() => {
+					b.classList.remove('play');
+				}, timeout = 100);
+				playNext(i);
+			})
+		});
+
+		// document.addEventListener("load", () => {
+			playNext(-1);
+		// })
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+* {
+	margin: 0;
+	font-family: "Poppins";
+}
+
+:root {
+	--PI: 3.14;
+	--fSize: 1rem;
+	--outline: #aaa1;
+	--duration: 4s;
+}
+
+body {
+	background: #24252A;
+	color: #fff;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.btn {
+	--fSize: 2rem;
+	--paddingBlock: .5rem;
+	--paddingInline: .5rem;
+	--width: calc(var(--desiredW) + 2 * var(--paddingInline));
+	--height: calc(var(--fSize) * 1.5 + 2 * var(--paddingBlock));
+	--borr: calc(var(--height) / 2);
+	width: var(--width);
+	height: var(--height);
+	overflow: hidden;
+	display: grid;
+	margin: 2rem auto;
+	place-content: center;
+	text-align: center;
+	position: relative;
+	border-radius: var(--borr);
+	font-size: var(--fSize);
+	--dasharray: calc((2 * var(--width) + 2 * var(--PI) * var(--borr) - 4 * var(--borr)));
+
+	&>* {
+		grid-column: 1 / -1;
+		grid-row: 1 / -1;
+		align-self: center;
+	}
+
+	&:hover {
+		cursor: pointer;
+		
+		& rect:last-child {
+			animation-play-state: paused;
+		}
+	}
+}
+
+svg {
+	position: relative;
+	width: var(--width);
+	height: var(--height);
+
+	&>rect {
+		width: var(--width);
+		height: 100%;
+		stroke-dasharray: var(--dasharray);
+		ry: var(--borr);
+	}
+
+	&>rect:last-child {
+		stroke-dashoffset: var(--dasharray);
+	}
+
+	.play &>rect:last-child {
+		animation: bringIt var(--duration) ease-in-out forwards;
+		filter: drop-shadow(0 0 5px #000);
+	}
+}
+
+@keyframes bringIt {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+a {
+	text-decoration: none;
+	position: relative;
+	color: #48dbfb;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		background: currentColor;
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform .3s ease-in-out;
+	}
+
+	&:hover::before {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+}
