@@ -1,31 +1,61 @@
 * {
 	margin: 0;
-	font-family: "Poppins";
+	font-family: "Poppins", sans-serif;
+}
+
+html {
+	color-scheme: light dark;
 }
 
 :root {
 	--PI: 3.14;
-	--fSize: 1rem;
+	--fSize: clamp(.75rem, 2vw, 1.25rem);
 	--outline: #aaa1;
 	--duration: 4s;
+
+	@media (prefers-color-scheme: light) {
+		--outline: #1111;
+	}
 }
 
 body {
-	background: #24252A;
-	color: #fff;
 	min-height: 100vh;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	flex-direction: column;
+	font-size: var(--fSize);
 	gap: 2rem;
+
+	& > * {
+		max-width: clamp(10rem, 80%, 40rem);
+		margin-inline: auto;
+	}
+}
+
+h1 {
+	font-size: clamp(1.5rem, 5vw, 2.5rem);
+	text-align: center;
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		bottom: 0;
+		left: 0;
+		background: currentColor;
+	}
+
+	margin-bottom: 2rem;
 }
 
 .btn {
-	--fSize: 2rem;
+	--fSize: clamp(1rem, 5vw, 2.5rem);
 	--paddingBlock: .5rem;
 	--paddingInline: .5rem;
-	--width: calc(var(--desiredW) + 2 * var(--paddingInline));
+	--width: calc(var(--desiredW) + 2 * var(--paddingInline) + 1px);
 	--height: calc(var(--fSize) * 1.5 + 2 * var(--paddingBlock));
 	--borr: calc(var(--height) / 2);
 	width: var(--width);
@@ -73,7 +103,7 @@ svg {
 
 	.play &>rect:last-child {
 		animation: bringIt var(--duration) ease-in-out forwards;
-		filter: drop-shadow(0 0 5px #000);
+		filter: drop-shadow(0 0 2px var(--brand));
 	}
 }
 
@@ -86,7 +116,7 @@ svg {
 a {
 	text-decoration: none;
 	position: relative;
-	color: #48dbfb;
+	color: #0e6173;
 
 	&::before {
 		content: "";
@@ -99,6 +129,10 @@ a {
 		transform: scaleX(0);
 		transform-origin: right;
 		transition: transform .3s ease-in-out;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		color: #00a8ff;
 	}
 
 	&:hover::before {

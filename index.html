@@ -14,9 +14,7 @@
 			Fancy Buttons and SVGs!
 		</h1>
 		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit.
-			Fuga officia repudiandae veniam amet cupiditate iusto ducimus sapiente
-			quasi dolor deserunt.
+			Highly-customizable buttons with SVGs and animations.
 		</p>
 		<div class="btn">
 			<div class="text">Lorem.</div>
@@ -55,7 +53,7 @@
 	</footer>
 	<script>
 		let btns = document.querySelectorAll('.btn');
-		function playNext(i=0) {
+		function playNext(i=-1) {
 			i = (i + 1) % btns.length;
 			btns[i].classList.add('play');
 		} 
@@ -67,14 +65,14 @@
 			b.addEventListener("animationend", () => {
 				setTimeout(() => {
 					b.classList.remove('play');
-				}, timeout = 100);
+				}, 100);
 				playNext(i);
 			})
 		});
 
-		// document.addEventListener("load", () => {
-			playNext(-1);
-		// })
+		document.addEventListener("DOMContentLoaded", () => {
+			playNext();
+		})
 	</script>
 </body>
 
