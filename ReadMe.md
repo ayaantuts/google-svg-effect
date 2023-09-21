@@ -2,6 +2,9 @@
 
 Inspired from [this page](https://ads.google.com/home/#:~:text=Google%20Ads%20gives%20you%20many%20ways%20to%20be)
 
+- Live demo can be found on [Github Pages](https://ayaantuts.github.io/google-svg-effect)
+**Not responsive**
+
 ## Features
 - Highly customizable using CSS variables
 - Minimum JavaScript required
